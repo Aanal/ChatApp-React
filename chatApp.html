@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <title>Avatar</title>
+      <script src="https://fb.me/react-0.14.7.js"></script>
+      <link href="hello-react.html" rel="stylesheet">
+
+      <script src="https://fb.me/react-dom-0.14.7.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    </head>
+    <body>
+      
+      <div id="app-C"></div>
+      <script type="text/babel">
+
+      var App = React.createClass({
+        getInitialState: function(){
+          return {
+            cid: 1,
+            contacts: [{cid:1, name: "abcdef"}, {cid:2, name: "ghijklm"}, {cid:3, name:"nopqrst"}, {cid:4, name:"uvwxyz"}]
+          }
+        },
+
+        render: function() {
+          return (
+            <div>
+              <ContactsContainer contacts =  {this.state.contacts}/>
+              <MessageContainer currentCid = {this.state.cid} />
+            </div>
+          );
+        }
+      });
+
+      var ContactsContainer = React.createClass({
+        render: function(){
+          return (
+            <ul>{this.props.contacts.map(({name}) => { <li>{name} </li> }) }</ul>
+          );
+         }
+      });
+
+      var MessageContainer = React.createClass({
+        getInitialState: function(){
+          return{
+            1: ["hi","hello","how are you","i am fine","how is life","it is fine","take care", "bye"],
+            2:["hi","hello","how are you","i am fine","how is life","it is fine","take care", "bye"],
+            3:["hi","hello","how are you","i am fine","how is life","it is fine","take care", "bye"],
+            4:["hi","hello","how are you","i am fine","how is life","it is fine","take care", "bye"],
+            5:["hi","hello","how are you","i am fine","how is life","it is fine","take care", "bye"]
+          }
+
+        },
+        render: function(){
+          return (
+            <ul>{
+              this.state[this.props.currentCid].map((message) => {<li>{message}</li>})
+            }
+            </ul>
+          )
+        }
+
+      });
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById('app-C')
+      );
+
+      </script>
+    </body>
+  </html>
